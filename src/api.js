@@ -16,9 +16,11 @@ const apiURL = "https://thinkful-list-api.herokuapp.com/dustin"
                     error.message = response.statusText;
                     return Promise.reject(error);
                 }
+                
             }
             return response.json();
         })
+        
         .then(data =>{
             if (error){
                 error.message = data.message;
@@ -26,7 +28,11 @@ const apiURL = "https://thinkful-list-api.herokuapp.com/dustin"
             }
             // return normal
             return data;
-        });
+        })
+        .catch((error) => {
+            store.setError(error.message);
+             renderError();
+           });
     }
     // GET Function
     function getBookmarks(){
