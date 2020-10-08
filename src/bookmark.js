@@ -71,12 +71,13 @@ function handleNewBookmarkSubmit(){
     $('#js-add-bookmark-form').submit(function(event){
       event.preventDefault();
       const chessnuttValue = {};
-      chessnuttValue.title = $('.js-bookmark-title').val("");
-      chessnuttValue.url = $('.js-bookmark-url').val("");
-      chessnuttValue.desc = $('.js-bookmark-description').val("");
-      chessnuttValue.rating = $('.js-bookmark-rating').val("");
-      $(event.currentTarget).closest('form').find("input[type=text], textarea").val("");
-
+      chessnuttValue.title = $('.js-bookmark-title').val();
+      chessnuttValue.url = $('.js-bookmark-url').val();
+      chessnuttValue.desc = $('.js-bookmark-description').val();
+      chessnuttValue.rating = $('.js-bookmark-rating').val();
+      $('#js-add-bookmark-form').each(function(){
+        this.reset();
+    });
      
       
       api.addBookmark(chessnuttValue)
@@ -152,7 +153,7 @@ function bindEventListeners(){
     removeBookmarkWhenClicked();
     minimumRatingHandler();
     handleToggleExpand();
-    clearFormWhenSubmit()
+  
    
 
     
